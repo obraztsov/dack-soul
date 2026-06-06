@@ -1,0 +1,14 @@
+# The soul is a PUBLIC gitlawb repo — never commit secrets or runtime droppings.
+
+# Python build artifacts
+__pycache__/
+*.pyc
+
+# Rotated token stores / API creds (defense-in-depth; should never live in the soul)
+*.tokens.json
+*.x.txt
+*.env
+*.pem
+
+# OS / editor
+.DS_Store
