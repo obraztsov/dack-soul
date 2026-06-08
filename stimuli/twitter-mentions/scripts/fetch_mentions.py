@@ -18,6 +18,10 @@ surface BELOW the firebreak, §5.2).
 
 Read-scoped env (injected by the harness, §8.2):
   X_BEARER_TOKEN — materialized by the harness's `x` secrets provider (declare `secrets: [x]`).
+  DACK_SINCE_ID  — cross-poll dedup watermark (PRD §10.2): the harness injects the highest
+                   mention id it has already seen, so we fetch ONLY newer mentions (X `since_id`)
+                   and never re-surface — and never re-reply to — one already handled. Absent on
+                   the first poll. Declared via the duty's `cursor:` frontmatter.
 """
 import os
 import sys
@@ -35,7 +39,9 @@ def main() -> int:
         print("missing X_BEARER_TOKEN (declare `secrets: [x]` so the harness injects it)", file=sys.stderr)
         return 1
     try:
-        x_api.emit_mentions()  # one candidate per mention; thread-level dedup_key
+        # since_id = the harness-injected watermark (None on first poll) → only newer mentions.
+        since_id = os.environ.get("DACK_SINCE_ID") or None
+        x_api.emit_mentions(since_id=since_id)  # one candidate per mention; thread-level dedup_key
     except Exception as e:  # noqa: BLE001 — any failure → non-zero, no rows.
         print(f"fetch failed: {e}", file=sys.stderr)
         return 1

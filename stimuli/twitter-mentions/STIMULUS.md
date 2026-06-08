@@ -7,6 +7,7 @@ emits:
   type: mention
   default_payload_tier: public                     # a tweet is always public/untrusted
 coalesce: { mode: batch, window_sec: 300, dedup_key: thread_id }   # read the room, resist floods
+cursor: { field: id, env: DACK_SINCE_ID }          # cross-poll dedup: never re-reply (X since_id)
 route: perceive
 priority: low
 secrets: [x]                                       # harness runs x_oauth2.py → injects X_BEARER_TOKEN
