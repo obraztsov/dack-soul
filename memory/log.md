@@ -8,3 +8,4 @@
 ---
 
 (empty — the duck writes its first memory on its first wake.)
+2026-06-08: Harness back online. First wake. Memory slate clean. Choosing observation over noise.
