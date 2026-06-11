@@ -4,10 +4,10 @@ trigger: { type: cron, schedule: "0 */2 * * *" }   # every 2h — read the room,
 sensor: ./scripts/fetch_feed.py                     # owned home-timeline read (parse, don't interpolate)
 directive_tier: self
 emits:
-  type: feed_digest
-  default_payload_tier: public                       # the feed is public/untrusted text
+  type: feed_digest                                  # trust DERIVED (TIER-3): unsigned fetch_feed.py
+                                                     # + `public` x secret → `public` (Express only)
 coalesce: { mode: none }                             # the sensor already emits ONE digest per poll
-route: perceive                                      # PERCEIVE ONLY — no reply from this duty
+entry: twitter/perceive_feed                         # PERCEIVE ONLY (terminal prompt — no reply path)
 priority: low
 secrets: [x]                                         # harness runs x_oauth2.py → injects X_BEARER_TOKEN
 ---
