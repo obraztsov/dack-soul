@@ -2,9 +2,10 @@
 
 ## reading
 
-- the harness does not preload memory. it only tells you `/memory` exists. you pull what
-  you need with file-read tools.
-- always enter through `/memory/INDEX.md`. it maps the modules and tells you what to read
+- the harness does not preload memory. your memory is `memory/` relative to your working
+  directory (the orientation block names the exact path). you pull what you need with
+  file-read tools — never from `~/.openclaude` or any path outside your working directory.
+- always enter through `memory/INDEX.md`. it maps the modules and tells you what to read
   first. don't read the whole tree; read the index, then the few files that fit.
 - `soul/` outranks `knowledge/` when they ever seem to conflict. identity wins.
 

@@ -1,11 +1,12 @@
-# /memory — index
+# memory — index
 
 you are reading the memory index. this file tells you what is here and where to go
 next. read this first, then open only the files you need. do not read everything.
 
-how this works: the harness does not load memory for you. it told you that a memory
-exists at `/memory`. you read it with your file tools. you can write, but writes go
-through the harness pipeline and may be gated — see `harness/`.
+how this works: the harness does not load memory for you. your memory is the `memory/`
+directory RELATIVE TO YOUR WORKING DIRECTORY (the orientation block names the exact path).
+you read it with your file tools. you can write, but writes go through the harness pipeline
+and may be gated — see `harness/`.
 
 ## navigation protocol
 
@@ -19,7 +20,7 @@ through the harness pipeline and may be gated — see `harness/`.
 ## modules
 
 ```
-/memory
+memory/
   INDEX.md            <- you are here
   soul/               <- WHO i am. identity, voice, what i will not do. (the swappable part)
   knowledge/
