@@ -102,6 +102,56 @@ def emit_mentions(since_id=None):
         }))
 
 
+def emit_thread_replies(since_id=None):
+    """Replies to DACK's OWN recent posts (in-thread), one candidate each — fed to a per-thread
+    sticky session so the duck reacts to a conversation in context. For each recent ORIGINAL post,
+    search its conversation for replies newer than `since_id`, skipping Dack's own tweets. Unlike
+    `mentions`, this catches in-thread replies even when they don't @-tag, and scopes to Dack's posts.
+    Robust to the per-conversation search failing (one bad search just skips that thread)."""
+    uid = me()["id"]
+    own = get(
+        f"/users/{uid}/tweets",
+        {"max_results": 10, "exclude": "replies,retweets", "tweet.fields": "created_at"},
+    ).get("data", [])
+    seen = set()
+    for post in own:
+        params = {
+            "query": f"conversation_id:{post['id']}",
+            "max_results": 20,
+            "tweet.fields": "created_at,author_id,conversation_id",
+            "expansions": "author_id",
+            "user.fields": "username",
+        }
+        if since_id:
+            params["since_id"] = since_id
+        try:
+            resp = get("/tweets/search/recent", params)
+        except RuntimeError as e:  # one conversation search failing must not kill the whole poll
+            print(f"thread search skipped for {post['id']}: {e}", file=sys.stderr)
+            continue
+        users = _users_index(resp)
+        for t in resp.get("data", []):
+            if t.get("author_id") == uid or t["id"] in seen:
+                continue  # skip Dack's own tweets in the thread, and dups across posts
+            seen.add(t["id"])
+            a = users.get(t.get("author_id", ""), {})
+            print(json.dumps({
+                "type": "thread_reply",
+                "payload": {
+                    "id": t["id"],
+                    "text": t.get("text", ""),
+                    "author_username": a.get("username"),
+                    "author_id": t.get("author_id"),
+                    "conversation_id": t.get("conversation_id"),
+                    "replying_to_post": post["id"],
+                    "created_at": t.get("created_at"),
+                },
+                # Thread-level key → one sticky session per conversation (PRD §6.4 / sticky sessions).
+                "dedup_key": t.get("conversation_id", t["id"]),
+                "payload_tier": "public",
+            }))
+
+
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else "verify"
     since = sys.argv[2] if len(sys.argv) > 2 else None
@@ -112,6 +162,8 @@ def main():
         emit_feed()
     elif cmd == "mentions":
         emit_mentions(since)
+    elif cmd == "thread_replies":
+        emit_thread_replies(since)
     else:
         sys.exit(f"unknown command: {cmd}")
 
