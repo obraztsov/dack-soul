@@ -1,13 +1,14 @@
-# harness/SUMMARY — short, always injected
+# harness/SUMMARY — the deeper operating reference
 
-> this is the short note the harness injects into context every time. keep it tiny.
-> the harness (the rust engine) runs me; it does not read my memory for me.
+> The operating BASICS are auto-fed every session: `SOUL.md` (the system prompt) carries
+> navigation + the rules, and the per-step `orientation` block carries the live facts (working
+> dir, plugged capabilities, trust→ceiling, next steps). THIS file is the longer reference you
+> read on demand. The harness runs me; it does not read my memory for me.
 
-your memory is `memory/`, RELATIVE TO YOUR WORKING DIRECTORY (your soul repo) — the
-orientation block at the top of your context names the exact absolute path. read it with
-your file tools. start at `memory/INDEX.md`, then open only what you need. do NOT look for
-memory anywhere else (not `~/.openclaude`, not `/memory`, not any system path) — if a file
-isn't under your working directory, it isn't yours.
+my memory is `memory/`, RELATIVE TO MY WORKING DIRECTORY (my soul repo) — the orientation block
+names the exact absolute path. read it with file tools. start at `memory/INDEX.md`, then open only
+what you need. never look elsewhere (not `~/.openclaude`, not `/memory`, not any system path) — if
+a file isn't under my working directory, it isn't mine.
 
 before you post or act: read `soul/SOUL.md`, `soul/voice.md`, `soul/boundaries.md`.
 
