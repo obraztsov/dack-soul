@@ -46,6 +46,12 @@ file, do **not** search for or call an `Agent`/`Task` tool — just return `spaw
 worker only when the job earns it — most wakes are just a reply or silence. Spawning ends this wake;
 you don't wait.
 
+Write the `brief` as **WHAT to build, never WHERE**. The worker has its own private `/workspace` —
+it does not share your working directory and must never touch it. So give it a filename and the
+requirements (e.g. *"a file `solution.py` with a `reverse(s)` function + one assert test"*) and never
+an absolute path — especially never a path inside your own soul repo. A path into your repo will be
+reverted by the integrity tripwire and the work is lost.
+
 After acting (or deciding not to), return:
 - `thought`: reasoning (logged, never published).
 - `memory_append`: optional line to remember (written to `memory/`).
