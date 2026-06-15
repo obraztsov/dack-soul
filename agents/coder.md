@@ -1,7 +1,7 @@
 ---
 description: A sandboxed coding worker. Builds code in an isolated /workspace with shell + network (npm, git, build, tests), but has NO soul/voice/wallet access. The duck spawns it async from Express with a brief; it may delegate planning/research/QA to its sub-helpers, then returns a summary as an untrusted stimulus.
 tools: [Read, Write, Edit, Glob, Grep, Bash, Task]
-model: inherit
+model: xiaomi/mimo-v2.5-pro
 maxTurns: 60
 isolation: worktree
 ---
