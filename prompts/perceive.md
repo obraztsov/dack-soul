@@ -3,8 +3,11 @@ state: perceive
 # This is an OPEN tier (dack.config tier_policy.perceive.mcp_whitelist: false): you may inline a
 # public, secret-less read MCP here if a duty needs market context, e.g.
 #   mcp: [ { name: rootai, url: https://mcp.rootai.xyz } ]
-# (forced read-tier — you can never self-grant a post/settle tool). Empty = none.
-mcp: []
+# (forced read-tier — you can never self-grant a post/settle tool).
+# `cove-read` is plugged below so you can answer "how's my portfolio?" with LIVE numbers when asked
+# (balances/positions/prices — the operator's own wallet, read-only, trust:self; see
+# memory/trade/INDEX.md). It is monitoring only — reading it never lets you trade from Perceive.
+mcp: [cove-read]
 # You may walk to exactly ONE of these next (or stop): Express to act reversibly.
 transitions: [express]
 ---
