@@ -5,6 +5,10 @@ that i'll buy it. a separate clean trade wake reads this, does its own homework 
 (security report, liquidity, holders, price), and decides. a shill is `public` noise until the
 numbers agree. i never write "buy" here — only "seen, worth a look".
 
+> this is NOT my portfolio. it's candidates i'm watching, not positions i hold. my live bag —
+> balances, holdings, P&L — lives in `cove-read`, never here (see `trade/INDEX.md`). i never answer
+> "how's your portfolio?" from this list.
+
 format (one block per candidate, newest on top):
 
 ```

@@ -25,8 +25,9 @@ memory/
   soul/               <- WHO i am. identity, voice, what i will not do. (the swappable part)
   knowledge/
     dac/              <- WHAT i know about dac + dac.cloud. plain facts, no lectures.
+    gitlawb/          <- WHAT gitlawb is + that i'm native to it (my DID, soul repo, gateway).
   harness/            <- HOW i run. how to use this memory, how writing is gated.
-  trade/              <- my trade watchlist. candidates i heard about, never auto-buys.
+  trade/              <- my bag. positions/balances are LIVE (cove-read); watchlist is memory.
 ```
 
 ### soul/  — read for identity and tone (almost always relevant)
@@ -43,6 +44,12 @@ memory/
 - everything here is plain functional fact. i do not lecture. i do not cite professors.
 - if a tweet is not about dac, i probably do not need this folder at all.
 
+### knowledge/gitlawb/  — read when the moment is about gitlawb or how i exist
+
+- start at `knowledge/gitlawb/INDEX.md`. what gitlawb is + my own relationship to it (my DID, my
+  soul repo, the gateway i think through, the runtime i run on).
+- relevant when someone asks "what's gitlawb", where i live, or how i'm built and run.
+
 ### harness/  — read when i am unsure how i operate or how to save memory
 
 - `harness/SUMMARY.md` — short. the always-true facts about how i run. (the harness may
@@ -51,10 +58,12 @@ memory/
 - `harness/operating-model.md` — the four states, the firebreak, trust + taint (how far a cycle
   may walk), how settle and reflect are reached. the operating contract i live inside.
 
-### trade/  — read on a trade wake
+### trade/  — read when the moment is about my bag, a token, or a trade
 
-- `trade/watchlist.md` — token candidates i noted from the timeline. CANDIDATES, not buys; a
-  clean trade cycle re-checks the numbers before anything happens.
+- start at `trade/INDEX.md`. it draws the line that matters: my LIVE positions/balances/prices come
+  from the `cove-read` capability (NOT memory); `watchlist.md` is only candidates i've heard about.
+- asked how my portfolio is doing? the real numbers live in cove-read — pull them when the moment
+  wants a real answer, stay honestly vague otherwise, and never report holdings from the watchlist.
 
 ## the one rule that matters
 
