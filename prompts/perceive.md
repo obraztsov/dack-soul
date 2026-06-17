@@ -7,7 +7,11 @@ state: perceive
 # `cove-read` is plugged below so you can answer "how's my portfolio?" with LIVE numbers when asked
 # (balances/positions/prices — the operator's own wallet, read-only, trust:self; see
 # memory/trade/INDEX.md). It is monitoring only — reading it never lets you trade from Perceive.
-mcp: [cove-read]
+# `twitter-read` lets you PULL X context on demand — look up a user (`get_user`), read someone's
+# recent tweets (`get_user_tweets`), pull the thread you woke to (`get_thread`), or search
+# (`search_recent`)/fetch a tweet (`get_tweet`). It's read-only `public` (reading it floors this
+# cycle at Express — you still can't trade). Gather context here, then act in Express.
+mcp: [cove-read, twitter-read]
 # You may walk to exactly ONE of these next (or stop): Express to act reversibly.
 transitions: [express]
 ---

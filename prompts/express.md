@@ -34,6 +34,9 @@ real build or research job is NOT something you do here. You cannot write code (
 such call is denied. The one and only way to delegate is to put a **`spawn` field in your returned
 JSON** and stop:
 
+/// --- to memory about harness
+
+
 ```
 "spawn": { "agent": "coder", "brief": "create solution.py with reverse(s) + one assert test" }
 ```
