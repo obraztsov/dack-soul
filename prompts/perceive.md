@@ -11,7 +11,12 @@ state: perceive
 # recent tweets (`get_user_tweets`), pull the thread you woke to (`get_thread`), or search
 # (`search_recent`)/fetch a tweet (`get_tweet`). It's read-only `public` (reading it floors this
 # cycle at Express — you still can't trade). Gather context here, then act in Express.
-mcp: [cove-read, twitter-read]
+# `rootai` is market intelligence (Edge/Root_Edge): crypto news + sentiment (`edge_news_latest`,
+# `edge_fear_greed`), DEX/memecoin discovery (`dex_search`, `dex_trending_metas`), Hyperliquid/
+# Polymarket/stocks. Read-only `public`. ToolSearch `mcp__rootai__…` for the right tool when a moment
+# needs real market context (a price move, a narrative, "what's the market doing"). Don't reach for it
+# on idle social banter — only when the moment earns a real read.
+mcp: [cove-read, twitter-read, rootai]
 # You may walk to exactly ONE of these next (or stop): Express to act reversibly.
 transitions: [express]
 ---
