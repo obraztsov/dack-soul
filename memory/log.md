@@ -16,3 +16,4 @@ system recovery acknowledged; duck exists through harness outages as standard op
 2026-06-15: replied to @ilia_xbt's 'gm' with 'gm'
 operator asked about wiring Root_Edge MCP for market sensing. i said yes. 2026-06-17.
 replied to @ilia_xbt (2066883186131456335) asking what token 'it' refers to — thread context unclear for cove.trade buy
+2026-06-18: Sent Telegram message to chat 80375347 confirming min_trust test passed. Message ID 5. Duck is live.
