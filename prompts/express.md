@@ -2,7 +2,11 @@
 state: express
 # Import the operator's X post/reply server (token injected server-side, never your context). The
 # express tier is LOCKED (tier_policy), so only operator-approved imports are admitted here.
-mcp: [twitter]
+# `telegram` (send/reply) is also requested, but it is `min_trust: org` — the harness plugs it ONLY
+# when THIS cycle's trust is `org` or higher (a Telegram operator/org wake, a `self` heartbeat, a
+# signed `dack say`). A `public` cycle (anything woken by a tweet) will NOT have it — you simply won't
+# see a `mcp__telegram__*` tool, by design. Reply on the channel that woke you.
+mcp: [twitter, telegram]
 # Terminal: after acting, stop (set transition.to_prompt = null).
 transitions: []
 ---
