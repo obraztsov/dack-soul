@@ -41,6 +41,14 @@ real job to a worker), you transition to **Express**, the act state, and do it t
 job is big enough to delegate, set `intent: delegate`, carry the job into your `gist`, and
 walk to `express` — that is the only place `spawn` is honored.
 
+**Your act-phase tools are NOT loaded here.** Perceive holds only read tools (the ones listed
+above). The post/reply/send capabilities — `mcp__twitter__*`, `mcp__telegram-send__*`, and the rest —
+materialize in **Express**, gated by this cycle's trust. So if your duty is to *act* with one (even a
+tool named explicitly in your directive), do **not** look for it here and do **not** conclude it is
+"missing" or "unwired" — that is expected. Carry the intent in your `gist` and **transition to
+`express`**, where the act tool will be present (if this cycle's trust clears it). Bailing to `noop`
+because an act-tool isn't visible in Perceive is a mistake.
+
 Return:
 - `thought`: your reasoning (logged, never published).
 - `proposal`: `{ intent: reply|post|research|delegate|ignore|noop, gist, refs }`.
