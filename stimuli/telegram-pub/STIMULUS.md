@@ -6,6 +6,11 @@ trigger: { type: webhook, path: /telegram/pub }
 directive_tier: self          # moot for a webhook — the cycle's tier is the PATH's (config.webhooks:
                               # "/telegram/pub" → public). a stranger can never seed above public.
 emits: { type: telegram_message }
+# Aggressive debounce: a noisy public/stranger group's messages fold for 30 min into ONE wake, then
+# fire. The duck is deliberately "slow to reply" here (it's one synchronous loop) — this is the
+# flood-control valve: being added to a busy public group is a burst that folds into a single wake,
+# not 100 cycles. Per-chat (dedup_key = chat_id). Operator: tune window_sec per appetite (e.g. 3600 = 1h).
+coalesce: { mode: batch, window_sec: 1800 }
 entry: telegram/perceive
 priority: low
 ---

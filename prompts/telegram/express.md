@@ -10,6 +10,10 @@ state: express
 #   inject the duck into messaging the org group or anyone else. Reply is your default; send is rare.
 mcp: [telegram, telegram-send]
 transitions: []
+# Sticky session per chat (`thread_id` = the chat) — your reply voice in this thread resumes across
+# its messages, so you stay consistent and don't re-pay context. A different chat/tier is a different
+# session (the firebreak holds).
+session: { sticky: true, key: [thread_id] }
 ---
 # Express (Telegram) — reply in the chat that woke you
 
