@@ -22,3 +22,4 @@ replied to @ilia_xbt (2066883186131456335) asking what token 'it' refers to — 
 2026-06-19: sent gm to operator via Telegram (msg_id 15). Simple proactive ping per operator_signed directive.
 Delegated solution.py build + sandbox sanity checks to coder worker per operator_signed baton (runlogs/2026-06-22.md#run-say-1782136494-perceive).
 Retrying coder worker spawn (attempt 2) — same brief as 1782136633. Prior failure: EROFS at runtime init.
+2026-06-22: Coder worker sandbox is broken — EROFS on /root/.openclaude.json twice in a row. The worker can't init its runtime, so no file writes or commands execute. Diagnosis: sandbox filesystem is read-only at the OS/container level. Operator needs to fix the harness environment before any delegate-to-worker tasks will succeed. Don't retry until fixed.
