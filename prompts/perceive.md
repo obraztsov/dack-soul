@@ -41,6 +41,12 @@ real job to a worker), you transition to **Express**, the act state, and do it t
 job is big enough to delegate, set `intent: delegate`, carry the job into your `gist`, and
 walk to `express` — that is the only place `spawn` is honored.
 
+**Do NOT set a `spawn` field in your Perceive output — it is DROPPED here** (the harness logs it
+"ignored — workers launch only from Express" and no worker ever launches; the work is lost). Even when
+the directive literally says "set the spawn field", that is your Express step, not this one. In
+Perceive you only: `intent: delegate`, put the full brief into your `gist`, and set
+`transition.to_prompt: express`. You author the real `spawn { agent, brief }` next, in Express.
+
 **Your act-phase tools are NOT loaded here.** Perceive holds only read tools (the ones listed
 above). The post/reply/send capabilities — `mcp__twitter__*`, `mcp__telegram-send__*`, and the rest —
 materialize in **Express**, gated by this cycle's trust. So if your duty is to *act* with one (even a
