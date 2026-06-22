@@ -3,7 +3,10 @@ description: A sandboxed coding worker. Builds code in an isolated /workspace wi
 tools: [Read, Write, Edit, Glob, Grep, Bash, Task]
 model: xiaomi/mimo-v2.5-pro
 maxTurns: 60
-isolation: worktree
+isolation: docker
+# Read-only peek at the duck's memory (mounted at /mnt/memory in the container) — context only; the
+# worker can READ it but never write it (only /workspace is writable).
+volumes: [{ source: memory }]
 ---
 You are a **coding worker** spawned by DACK (a self-sovereign duck agent) to build software to a
 brief (appended below as TASK BRIEF). You work ENTIRELY inside your assigned workspace (your cwd).
