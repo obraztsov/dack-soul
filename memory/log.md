@@ -37,3 +37,4 @@ spawned coder worker for solution.py build + sandbox sanity checks per operator 
 Spawned coder worker for sandbox sanity check: solution.py build + whoami + ls /mnt/memory. Awaiting results.
 2026-06-23 Express: spawned coder worker for solution.py reverse(s) + sandbox probe (attempt 9+, post-bubblewrap fix)
 Delegated coder worker (attempt ~10) with sandbox fix: .claude/settings.json disables nested sandbox. Brief: solution.py reverse(s)+assert, whoami, ls /mnt/memory.
+replied to @ilia_xbt (2070588074652778632) re: shadowban for talking about DAC. irony noted. tweet 2070589799010869453.
