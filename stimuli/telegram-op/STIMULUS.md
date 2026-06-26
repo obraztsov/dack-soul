@@ -6,9 +6,10 @@ trigger: { type: webhook, path: /telegram/op }
 directive_tier: self          # moot for a webhook — the cycle's tier is the PATH's (config.webhooks:
                               # "/telegram/op" → org). provenance is operator-anchored, not here.
 emits: { type: telegram_message }
-# Light debounce: the operator's rapid messages fold into one coherent wake (8s), then fire. Per-chat
-# (dedup_key = chat_id) — your DM batches separately from every group. Short window = stays responsive.
-coalesce: { mode: batch, window_sec: 8 }
+# Light debounce: the operator's rapid messages fold into one coherent wake (15s), then fire — enough
+# room to finish a multi-message thought before the duck answers. Per-chat (dedup_key = chat_id) — your
+# DM batches separately from every group. Still short enough to stay responsive.
+coalesce: { mode: batch, window_sec: 15 }
 entry: telegram/perceive
 priority: high
 ---
