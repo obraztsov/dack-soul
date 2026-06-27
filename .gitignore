@@ -17,3 +17,8 @@ __pycache__/
 # this dir is REQUIRED to be gitignored, else the soul-integrity tripwire reverts (deletes) worker
 # output every cycle (the harness hard-fails at boot if this line is missing while worker_sandbox is on).
 workspaces/
+
+# Runlogs (chat detail + telegram handles) live in their OWN private git repo (`runlogs/.git`), NEVER
+# the PUBLIC soul. REQUIRED gitignored, or the soul-integrity tripwire would commit/revert them every
+# cycle and re-leak them — the harness hard-fails at boot if this is missing.
+runlogs/
