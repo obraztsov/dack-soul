@@ -6,9 +6,10 @@ trigger: { type: webhook, path: /telegram/trusted }
 directive_tier: self          # moot for a webhook — the cycle's tier is the PATH's (config.webhooks:
                               # "/telegram/trusted" → org). The GROUP confers the tier, not the sender.
 emits: { type: telegram_message }
-# Moderate debounce: a trusted group's messages fold for 60s into one wake, then fire — the group
-# stays a conversation, not a wake-per-line. Per-chat (dedup_key = chat_id).
-coalesce: { mode: batch, window_sec: 60 }
+# Moderate debounce: a trusted group's messages fold for 180s into one wake, then fire — the group
+# stays a conversation (not a wake-per-line), and a longer window lets a real thread (incl. a buried
+# question + the chatter after it) accumulate before the duck reads it. Per-chat (dedup_key = chat_id).
+coalesce: { mode: batch, window_sec: 180 }
 entry: telegram/perceive
 priority: high
 ---
