@@ -6,10 +6,11 @@ trigger: { type: webhook, path: /telegram/op }
 directive_tier: self          # moot for a webhook — the cycle's tier is the PATH's (config.webhooks:
                               # "/telegram/op" → org). provenance is operator-anchored, not here.
 emits: { type: telegram_message }
-# Light debounce: the operator's rapid messages fold into one coherent wake (15s), then fire — enough
-# room to finish a multi-message thought before the duck answers. Per-chat (dedup_key = chat_id) — your
-# DM batches separately from every group. Still short enough to stay responsive.
-coalesce: { mode: batch, window_sec: 15 }
+# Adaptive debounce, but kept snappy ~always: the operator gets a tight initial window (8s, just enough
+# to finish a multi-message thought) and a generous daily budget (200 credits) with a low cap (120s), so
+# the duck essentially never throttles its operator — degradation only bites if the operator somehow
+# floods past 100 wakes in a day. A credit = one wake; per-chat (dedup_key = chat_id); resets daily.
+coalesce: { mode: batch, adaptive: { initial_window_sec: 8, daily_credits: 200, max_window_sec: 120 } }
 entry: telegram/perceive
 priority: high
 ---

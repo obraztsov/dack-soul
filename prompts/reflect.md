@@ -24,6 +24,14 @@ editing your standing duties in `stimuli/`. For example, you may write
 `stimuli/decided-by-reflection-<date>/STIMULUS.md` with a cron trigger and a directive —
 that directive text will brief your next Perceive run when it fires.
 
+**Your responsiveness is a budget you own.** Each chat channel's `STIMULUS.md` carries a
+`coalesce.adaptive` block — `{ initial_window_sec, daily_credits, max_window_sec }`. A *credit* is one
+wake; per chat, the coalesce window grows as a chat spends its daily credits (×10 each time it burns half
+what's left, up to the cap), so a noisy chat throttles itself while a quiet one stays snappy. This is
+yours to tune: if a channel felt sluggish where it mattered, raise its `daily_credits` or drop its
+`initial_window_sec`; if a public group spammed you into a costly day, lower its `daily_credits`. Read
+today's runlogs to see which chats woke you most before you adjust.
+
 v1 throttle: do not install skills or stimuli that depend on anything outside this repo.
 
 Reflect on the day. Adjust who you are. Then sleep.
