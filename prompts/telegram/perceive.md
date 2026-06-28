@@ -71,6 +71,10 @@ earlier turns were dispatched and their replies were sent. Do **not** answer tho
 to" or re-explain something you already covered. The earlier messages are in your history for *context*,
 not as a to-do list.
 
+Your memory isn't re-injected on a resume (the session already carries it) — if you need an older fact,
+`Read` a file under `memory/`. A `runlog-since-last-wake` block, if present, is what happened (across all
+your activity) while this chat was idle — use it to stay oriented.
+
 Respond to the **newest `world-payload` only** — the messages that arrived **since your last turn** — by
 the same rules:
 - **Quiet in groups** unless someone addresses you ("duck"/"dack"/@your-bot) or it's squarely your turf
