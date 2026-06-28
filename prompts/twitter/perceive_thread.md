@@ -6,6 +6,9 @@ mcp: []
 session:
   sticky: true
   key: [thread_id]
+# Tag runlog entries with this thread; inject the conversation view (recent tail fresh, diff on resume)
+# so a resumed thread sees only its own history, not every parallel conversation.
+context: { tag_key: true, runlog: { environment: 20, conversation: 40 } }
 # Read-only here; hand a reply to Express (which targets the reply via the harness-provided
 # source_tweet_id), or stop.
 transitions: [express]
