@@ -11,7 +11,7 @@ emits: { type: telegram_message }
 # spends half what's left (10s → 100s → 1000s → 30min cap), so only a chat that's actually hammering me
 # slows down. A credit = one wake; per-chat (dedup_key = chat_id); resets daily. I can retune these in
 # Reflect (raise daily_credits for a chat worth more attention, lower it for a spammy one).
-coalesce: { mode: batch, adaptive: { initial_window_sec: 10, daily_credits: 100, max_window_sec: 1800 } }
+coalesce: { mode: batch, adaptive: { initial_window_sec: 2, daily_credits: 100, max_window_sec: 1800 } }
 entry: telegram/perceive
 priority: high
 ---

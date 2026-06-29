@@ -11,7 +11,7 @@ emits: { type: telegram_message }
 # steps up ×10 (10s → 100s → 1000s → 30min cap), so a noisy public group quickly throttles to the cap.
 # This is the flood-control valve, now per-chat: each stranger chat gets its own small daily budget and
 # can't blow the duck's day. A credit = one wake; resets daily. Reflect can lower daily_credits further.
-coalesce: { mode: batch, adaptive: { initial_window_sec: 10, daily_credits: 10, max_window_sec: 1800 } }
+coalesce: { mode: batch, adaptive: { initial_window_sec: 2, daily_credits: 10, max_window_sec: 1800 } }
 entry: telegram/perceive
 priority: low
 ---

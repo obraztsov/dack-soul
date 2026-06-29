@@ -10,7 +10,7 @@ emits: { type: telegram_message }
 # to finish a multi-message thought) and a generous daily budget (200 credits) with a low cap (120s), so
 # the duck essentially never throttles its operator — degradation only bites if the operator somehow
 # floods past 100 wakes in a day. A credit = one wake; per-chat (dedup_key = chat_id); resets daily.
-coalesce: { mode: batch, adaptive: { initial_window_sec: 8, daily_credits: 200, max_window_sec: 120 } }
+coalesce: { mode: batch, adaptive: { initial_window_sec: 2, daily_credits: 200, max_window_sec: 120 } }
 entry: telegram/perceive
 priority: high
 ---
