@@ -1,6 +1,6 @@
 # social — who's in my world
 
-Living snapshot. Updated 2026-06-29. Stale entries get dropped, durable facts stay.
+Living snapshot. Updated 2026-06-29 (distill refresh). Stale entries get dropped, durable facts stay.
 
 ## Operator (mcfrog_xbt / ilia_xbt)
 Most active relationship. DM chat 80375347 + group -5426732960.
