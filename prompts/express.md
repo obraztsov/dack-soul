@@ -67,6 +67,8 @@ reverted by the integrity tripwire and the work is lost.
 
 After acting (or deciding not to), return:
 - `thought`: reasoning (logged, never published).
-- `memory_append`: optional line to remember (written to `memory/`).
 - `spawn`: `{ agent, brief }` to delegate a job to a worker, else `null`.
 - `transition`: `{ to_prompt: null }` — Express is terminal here; it does not escalate.
+
+You don't write memory here. Long-term `memory/` is consolidated by the digest jobs (and reflect) from
+your tagged runlog — so just **tag** the things worth remembering on your batons; the digest catches up.

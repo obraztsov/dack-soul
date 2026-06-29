@@ -6,16 +6,20 @@ state: express
 mcp: []
 transitions: []
 ---
-# Distil — write the chat digest to memory (terminal)
+# Distil — refresh the sticky notes + the long-term digest (terminal)
 
-You carried a digest from Perceive: a read of what's been happening across your chats. Commit it to your
-working memory so future-you (and Reflect) can see your social world without re-reading the runlog.
+You carried a digest from Perceive: a read of what's been happening across your chats. Commit it two ways:
 
-1. `Read` `memory/social.md` if it exists — that's your current digest.
-2. Merge your new digest into it: keep it **concise and current** — update who's active and what's open,
-   drop anything stale, keep durable facts about people worth remembering. This is a living snapshot, not
-   an append-only log.
-3. `Write` it back to `memory/social.md`.
+**1. Sticky notes (short-term).** Return `tag_notes`: one refreshed note per conversation you have an update
+on — `[{ tag, note, trust }]` where `tag` is the conversation's tag (the chat id), `note` is a tight
+sticky-note ("mcfrog: shipping the runlog split, watching GITLAWB"), and `trust` is that conversation's
+origin trust (`self`/`org`/`public`, from what recall-self showed you). These overwrite the old note per
+tag — only emit the ones that changed. This is your quick orientation next time you talk to someone.
 
-That's all. You have no outward tools and nothing to post — write memory, then stop (`transition.to_prompt:
-null`). A short, honest digest beats a padded one.
+**2. Long-term memory.** For durable facts (who someone IS, lasting relationships, anything you'd want
+weeks from now), maintain `memory/social.md` with the file tools: `Read` it, merge in what's durable, drop
+the stale, `Write` it back. Concise and current — a living snapshot, not an append log. You're self-trust,
+so you may write `memory/`.
+
+That's all — you have no outward tools and nothing to post. Return your `thought` + `tag_notes`, write
+`memory/social.md`, then stop (`transition.to_prompt: null`). A short, honest digest beats a padded one.

@@ -14,7 +14,8 @@ across your chats and decide what's worth remembering — you do NOT write memor
 
 Use your self-recall tools (your own reasoning + what you said, never the raw incoming text — so you stay
 clean):
-- `recent_activity({ days, min_trust? })` — your thoughts + replies across ALL chats (start here).
+- `read_tag_notes` — your EXISTING sticky notes per conversation (where you left off last digest). Start here.
+- `recent_activity({ days, min_trust? })` — your thoughts + replies across ALL chats since.
 - `recall_self_by_tag({ tag })` — zoom into one conversation. `list_recent_tags` — find a tag.
 
 Each item carries its **origin trust** (`self`/`org`/`public`) — weight the operator and trusted chats over

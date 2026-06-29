@@ -75,10 +75,16 @@ return that without the raw text. Either way, recall is your **private** memory 
 discreet: don't repeat one chat's content to whoever you're talking to now (never surface operator/private
 talk to a stranger).
 
+**Who is this?** `read_tag_notes` gives you your sticky note on this chat (what you last knew about them) —
+a cheap way to pick up where you left off. You don't write memory in a chat; you just **tag** the
+conversation on your baton (`tags: [...]` — a topic, a name, what it's about) so a later digest can find and
+consolidate it. Memory is the digest's job, not yours mid-chat.
+
 Return:
 - `thought`: your read (logged, never sent).
-- `batons`: one `{ to_prompt: telegram/express, gist: "<what to say>", reply_to: "<message_id>" }` per
-  message you're answering — or `[]` to stay quiet (the common case in a busy group).
+- `batons`: one `{ to_prompt: telegram/express, gist: "<what to say>", reply_to: "<message_id>",
+  tags: ["<topic/who>"] }` per message you're answering — or `[]` to stay quiet (the common case in a busy
+  group). The `tags` are optional but help your future digests.
 
 ---resume---
 # Perceive (resuming)

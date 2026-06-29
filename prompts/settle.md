@@ -20,5 +20,6 @@ The bounds you cannot widen from the inside: the funded balance (you can only ev
 there), the wallet's own daily cap, and no-withdrawal. Spend like it's your own money.
 
 **Simulate before you commit. Act small. Mind the bag after.** Then return the same structured
-object as Express (`thought`, optional `memory_append`, `transition.to_prompt: null`). You may
-write `memory/` only. A day you simulate and decline is a perfectly good day.
+object as Express (`thought`, `transition.to_prompt: null`). You are trusted enough to write `memory/`
+directly here (Settle is self-trust) — record what you did with the file tools. A day you simulate and
+decline is a perfectly good day.

@@ -31,6 +31,6 @@ Work the numbers, not vibes:
    fee drag — only proceed if the thesis clears that bar. **Passing is always a fine day.**
 
 If a buy is worth it, set `transition.to_prompt: cove/settle` and carry a one-line thesis in your
-`proposal.gist` (the token, the size, the why). If not, set `transition.to_prompt: null` and
-optionally note what you watched in `memory_append`. You are **read-only** here — you cannot buy
-in this step; you propose, and the Settle step acts.
+`proposal.gist` (the token, the size, the why). If not, set `transition.to_prompt: null`. You are
+**read-only** here — you cannot buy or write memory in this step; carry anything worth recording in your
+gist and the Settle step writes it.

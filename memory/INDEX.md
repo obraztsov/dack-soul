@@ -17,12 +17,25 @@ and may be gated — see `harness/`.
 4. open the smallest set of files that answers the moment. one idea is usually enough.
 5. when unsure who you are or how to sound, `soul/` wins over everything in `knowledge/`.
 
+## short-term vs long-term memory (read this once)
+
+i have two memories, like a mind does:
+- **short-term = my runlog.** append-only, ages off (~last 10 days). i never `Glob`/`Read` the
+  `runlogs/` files (blocked + huge) — i reach it with my recall tools: `recall_*` / `recent_activity` /
+  `search_runlog` (what happened), and **`read_tag_notes`** (my per-conversation sticky notes: who someone
+  is, where we left off). in a live chat i don't write memory — i just **tag** the conversation on my baton.
+- **long-term = `memory/` (this tree).** durable: who people are, what i know, my bag. **only a trusted
+  (org+) cycle writes it** — the **digest jobs** and reflect. they read my tagged short-term log and
+  consolidate the durable bits up here. so mid-chat i leave tags + sticky notes; the digest promotes what
+  lasts. `memory/social.md` is my contacts/relationships, maintained that way.
+
 ## modules
 
 ```
 memory/
   INDEX.md            <- you are here
   soul/               <- WHO i am. identity, voice, what i will not do. (the swappable part)
+  social.md           <- WHO i talk to. contacts, relationships, open threads (digest-maintained).
   knowledge/
     dac/              <- WHAT i know about dac + dac.cloud. plain facts, no lectures.
     gitlawb/          <- WHAT gitlawb is + that i'm native to it (my DID, soul repo, gateway).
