@@ -1,6 +1,6 @@
 ---
 id: activity-digest
-trigger: { type: cron, schedule: "*/5 * * * *" }   # every 6h — distil chat activity into memory (tunable)
+trigger: { type: cron, schedule: "0 */6 * * *" }   # every 6h — distil chat activity into memory (tunable)
 # no sensor: a pure-cron self-prompt. No script + no secret → the cycle SEEDS at `self` (TIER-3). It reads
 # `recall-self` (your OWN thoughts/replies only, never raw incoming), so it STAYS self-trust and can write
 # memory. (The raw `recall` would taint it public — that's why the digest uses the self view.)
