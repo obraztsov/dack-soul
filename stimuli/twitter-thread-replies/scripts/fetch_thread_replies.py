@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""twitter-thread-replies sensor — a PURE PERCEIVER (PRD §5.2).
+"""twitter-thread-replies sensor — a PURE PERCEIVER.
 
 Emits in-thread replies to DACK's OWN recent posts (one candidate per reply), each keyed by
 `conversation_id` so the harness feeds it to a per-thread STICKY session (the duck reacts to a

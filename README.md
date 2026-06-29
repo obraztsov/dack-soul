@@ -1,7 +1,7 @@
-# `soul-template/` — the actor bundle (PRD §3.2)
+# `soul-template/` — the actor bundle
 
 This is a **template** of the duck's durable identity bundle. In production it is a
-*separate* Gitlawb repo (`dack-soul`) under the duck's Soul DID, hosted off-VPS (PRD §2)
+*separate* Gitlawb repo (`dack-soul`) under the duck's Soul DID, hosted off-VPS
 — **not** part of the harness source tree. It is checked in here only as the canonical
 example of the on-repo file formats the harness reads and the agent (in Reflect) writes.
 
@@ -15,11 +15,11 @@ dack-soul/
 └── runlogs/                harness-authored, append-only (agent reads, never writes)
 ```
 
-**Two lifetimes (PRD §2):** this bundle is durable and survives VPS disposal
+**Two lifetimes:** this bundle is durable and survives VPS disposal
 (resurrection = fresh VPS pulls the soul from Gitlawb). The ephemeral stimulus/dedup
 queue lives in SQLite on the VPS and is disposable.
 
-**Write-gating recap (PRD §4.1), enforced by the harness — not by anything in this repo:**
+**Write-gating recap, enforced by the harness — not by anything in this repo:**
 
 | Dir / file        | Readable | Writable in        |
 |-------------------|----------|--------------------|

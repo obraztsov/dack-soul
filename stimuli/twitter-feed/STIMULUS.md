@@ -4,7 +4,7 @@ trigger: { type: cron, schedule: "0 */2 * * *" }   # every 2h — read the room,
 sensor: ./scripts/fetch_feed.py                     # owned home-timeline read (parse, don't interpolate)
 directive_tier: self
 emits:
-  type: feed_digest                                  # trust DERIVED (TIER-3): unsigned fetch_feed.py
+  type: feed_digest                                  # trust DERIVED: unsigned fetch_feed.py
                                                      # + `public` x secret → `public` (Express only)
 coalesce: { mode: none }                             # the sensor already emits ONE digest per poll
 entry: twitter/perceive_feed                         # PERCEIVE ONLY (terminal prompt — no reply path)

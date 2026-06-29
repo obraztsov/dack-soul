@@ -1,7 +1,7 @@
 ---
 id: cove-trade
 trigger: { type: cron, schedule: "0 18 * * *" }    # once a day (18:00) — a bounded daily nibble
-# no sensor: a pure-cron self-prompt. No script + no secret → the cycle SEEDS at `self` (TIER-3), so
+# no sensor: a pure-cron self-prompt. No script + no secret → the cycle SEEDS at `self`, so
 # it stays clean enough to reach Settle and act on the operator's own wallet. (A twitter-driven trade
 # would taint `public` and never reach Settle — that firebreak is the point.)
 directive_tier: self

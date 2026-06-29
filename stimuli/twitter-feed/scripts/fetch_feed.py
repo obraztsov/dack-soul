@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""twitter-feed sensor (PRD §5.2) — a PURE PERCEIVER.
+"""twitter-feed sensor — a PURE PERCEIVER.
 
 Reads the duck's home timeline (the accounts it follows) and emits it as a SINGLE
 `feed_digest` candidate — one "read the feed" Perceive per poll. Read-only behaviour; it
-shares the RW token but only GETs (§5.2). Untrusted tweet text is parsed, never interpolated.
+shares the RW token but only GETs. Untrusted tweet text is parsed, never interpolated.
 
-Read-scoped env (forwarded by the harness, §8.2):
+Read-scoped env (forwarded by the harness):
   X_BEARER_TOKEN — materialized by the harness's `x` secrets provider (declare `secrets: [x]`).
 """
 import os

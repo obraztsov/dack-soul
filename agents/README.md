@@ -1,8 +1,7 @@
 # `agents/` — the duck's workforce (Reflect-authored)
 
 Definitions of the **subagents** the duck may spawn for long-running / sandboxed work
-(coding, image generation, research). See architecture §6.5, PRD §6.5, and
-`docs/VERIFICATION.md` "Subagents" for the full design and the OpenClaude grounding.
+(coding, image generation, research).
 
 **The load-bearing facts** (so this dir is never mistaken for a privilege escalation):
 
@@ -22,5 +21,4 @@ Definitions of the **subagents** the duck may spawn for long-running / sandboxed
 
 **Format** = OpenClaude agent definition (markdown + YAML frontmatter):
 `description`, `prompt`, `tools` / `disallowedTools`, `model`, `maxTurns`, `background`,
-`isolation: worktree`. Implementation lands in BUILD-PLAN **Phase 10** (post-core); the files
-here are illustrative scaffolding so the bundle shape is fixed now.
+`isolation: worktree`. The files here are illustrative scaffolding so the bundle shape is fixed.

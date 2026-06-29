@@ -1,7 +1,7 @@
 ---
 id: twitter-digest
 trigger: { type: cron, schedule: "0 5 * * *" }     # once a day (05:00) — take stock of your twitter presence
-# no sensor: a pure-cron self-prompt. No script + no secret → the cycle SEEDS at `self` (TIER-3). It reads
+# no sensor: a pure-cron self-prompt. No script + no secret → the cycle SEEDS at `self`. It reads
 # `recall-self` (your OWN thoughts/replies only, never the raw timeline), so it STAYS self-trust and can
 # write memory + reach `telegram-send` to ping the operator. (Reading the live timeline would taint public.)
 directive_tier: self

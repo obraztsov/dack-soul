@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""twitter-mentions sensor (PRD §5.2) — a PURE PERCEIVER.
+"""twitter-mentions sensor — a PURE PERCEIVER.
 
 Contract:
   - stdin:  trigger payload (empty for cron).
@@ -9,16 +9,16 @@ Contract:
 INVARIANT (enforced by the harness, restated so it never drifts): this sensor may only
 READ. It polls owned mentions and emits them as candidates. It must NEVER post or mutate
 state — if it needed a write/wallet credential it would be an action wearing a sensor's
-clothes (§5.2). It shares the duck's RW token (we have one key), but **only GETs** — it is
+clothes. It shares the duck's RW token (we have one key), but **only GETs** — it is
 behaviour, not the key, that makes a sensor a sensor.
 
 Python (not shell) deliberately: it handles untrusted tweet text, so it PARSES rather than
 string-interpolates (a shell sensor interpolating tweet bodies would itself be an injection
-surface BELOW the firebreak, §5.2).
+surface BELOW the firebreak).
 
-Read-scoped env (injected by the harness, §8.2):
+Read-scoped env (injected by the harness):
   X_BEARER_TOKEN — materialized by the harness's `x` secrets provider (declare `secrets: [x]`).
-  DACK_SINCE_ID  — cross-poll dedup watermark (PRD §10.2): the harness injects the highest
+  DACK_SINCE_ID  — cross-poll dedup watermark: the harness injects the highest
                    mention id it has already seen, so we fetch ONLY newer mentions (X `since_id`)
                    and never re-surface — and never re-reply to — one already handled. Absent on
                    the first poll. Declared via the duty's `cursor:` frontmatter.

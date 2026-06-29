@@ -1,10 +1,10 @@
 ---
 id: twitter-thread-replies
 trigger: { type: cron, schedule: "*/5 * * * *" }   # poll every 5 min for new replies on my posts
-sensor: ./scripts/fetch_thread_replies.py          # parse-don't-interpolate (untrusted text, §5.2)
+sensor: ./scripts/fetch_thread_replies.py          # parse-don't-interpolate (untrusted text)
 directive_tier: self
 emits:
-  type: thread_reply                               # trust DERIVED (TIER-3): unsigned sensor + `public`
+  type: thread_reply                               # trust DERIVED: unsigned sensor + `public`
                                                    # x secret → this cycle seeds `public` → Express ceiling
 coalesce: { mode: none }                           # one stimulus per reply — the per-thread STICKY
                                                    # session (not batching) provides conversation continuity

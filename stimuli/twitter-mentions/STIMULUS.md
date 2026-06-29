@@ -1,10 +1,10 @@
 ---
 id: twitter-mentions
-trigger: { type: cron, schedule: "*/3 * * * *" }   # poll every 3 min (push path latent, PRD §10.2)
-sensor: ./scripts/fetch_mentions.py                # parse-don't-interpolate (untrusted text, §5.2)
+trigger: { type: cron, schedule: "*/3 * * * *" }   # poll every 3 min (push path latent)
+sensor: ./scripts/fetch_mentions.py                # parse-don't-interpolate (untrusted text)
 directive_tier: self
 emits:
-  type: mention                                    # trust is now DERIVED (TIER-3): the unsigned
+  type: mention                                    # trust is now DERIVED: the unsigned
                                                    # fetch_mentions.py + the `public` x secret seed
                                                    # this cycle `public` → reaches only Express
 coalesce: { mode: batch, window_sec: 300, dedup_key: thread_id }   # read the room, resist floods

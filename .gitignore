@@ -13,7 +13,7 @@ __pycache__/
 # OS / editor
 .DS_Store
 
-# Delegated-worker workspaces (Phase 14) — per-run scratch the harness creates + GCs. NEVER commit:
+# Delegated-worker workspaces — per-run scratch the harness creates + GCs. NEVER commit:
 # this dir is REQUIRED to be gitignored, else the soul-integrity tripwire reverts (deletes) worker
 # output every cycle (the harness hard-fails at boot if this line is missing while worker_sandbox is on).
 workspaces/

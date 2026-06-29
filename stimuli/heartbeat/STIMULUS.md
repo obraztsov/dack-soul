@@ -1,10 +1,10 @@
 ---
 id: heartbeat
 trigger: { type: cron, schedule: "0 */4 * * *" }   # every 4h
-# no sensor: a pure-cron self-prompt (the duck's alarm clock, PRD §10.3)
+# no sensor: a pure-cron self-prompt (the duck's alarm clock)
 directive_tier: self
 emits:
-  type: scheduled_post                               # trust DERIVED (TIER-3): no sensor (pure cron)
+  type: scheduled_post                               # trust DERIVED: no sensor (pure cron)
                                                      # → `self` (the duck's own trusted directive)
 entry: perceive                                      # perceive → express (the model composes a post)
 priority: low
