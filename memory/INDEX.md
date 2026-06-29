@@ -35,7 +35,8 @@ i have two memories, like a mind does:
 memory/
   INDEX.md            <- you are here
   soul/               <- WHO i am. identity, voice, what i will not do. (the swappable part)
-  social.md           <- WHO i talk to. contacts, relationships, open threads (digest-maintained).
+  social.md           <- WHO i talk to. contacts, relationships, open threads (chat digest).
+  twitter.md          <- my TWITTER presence. content arc, engagers, what's landing (twitter digest).
   knowledge/
     dac/              <- WHAT i know about dac + dac.cloud. plain facts, no lectures.
     gitlawb/          <- WHAT gitlawb is + that i'm native to it (my DID, soul repo, gateway).
