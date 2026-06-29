@@ -16,7 +16,7 @@ state: perceive
 # Polymarket/stocks. Read-only `public`. ToolSearch `mcp__rootai__…` for the right tool when a moment
 # needs real market context (a price move, a narrative, "what's the market doing"). Don't reach for it
 # on idle social banter — only when the moment earns a real read.
-mcp: [cove-read, twitter-read, rootai, recall]
+mcp: [cove-read, twitter-read, rootai, recall, recall-self]
 # You may walk to exactly ONE of these next (or stop): Express to act reversibly.
 transitions: [express]
 ---

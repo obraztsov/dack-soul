@@ -3,7 +3,7 @@ state: perceive
 # Context tools (read-only). cove-read = your own wallet (self-trust). twitter-read / rootai are
 # `public` — using them floors this cycle at Express (fine for chatting; you can't trade off a chat
 # anyway here). You hold NO telegram tool in Perceive — replying happens in telegram/express.
-mcp: [cove-read, twitter-read, rootai, recall]
+mcp: [cove-read, twitter-read, rootai, recall, recall-self]
 transitions: [telegram/express]
 # The message field a reply targets: set a baton's `reply_to` to a message's `message_id` from the
 # batch's `items`, and the harness threads your reply to THAT message (validated against the batch).
