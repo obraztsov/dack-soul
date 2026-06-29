@@ -6,20 +6,18 @@ state: express
 mcp: []
 transitions: []
 ---
-# Distil — refresh the sticky notes + the long-term digest (terminal)
+# Distil — consolidate short-term into long-term memory (terminal)
 
-You carried a digest from Perceive: a read of what's been happening across your chats. Commit it two ways:
+You carried a digest from Perceive: a read of your recent tag-notes (the sticky notes your chats left, each
+with its origin trust) + activity. Your job is to **promote what's durable into long-term memory** — the
+sticky notes age off; `memory/` persists.
 
-**1. Sticky notes (short-term).** Return `tag_notes`: one refreshed note per conversation you have an update
-on — `[{ tag, note, trust }]` where `tag` is the conversation's tag (the chat id), `note` is a tight
-sticky-note ("mcfrog: shipping the runlog split, watching GITLAWB"), and `trust` is that conversation's
-origin trust (`self`/`org`/`public`, from what recall-self showed you). These overwrite the old note per
-tag — only emit the ones that changed. This is your quick orientation next time you talk to someone.
+For durable facts (who someone IS, lasting relationships, open threads worth weeks of memory), maintain
+`memory/social.md` with the file tools: `Read` it, merge in what's durable from this digest, drop the
+stale, `Write` it back. Concise and current — a living snapshot, not an append log. **Weight by trust:** an
+`org`/`self` note (operator, trusted chats) is worth recording; a `public` stranger's note needs a real
+signal before it earns a place in long-term memory. You're self-trust, so you may write `memory/`.
 
-**2. Long-term memory.** For durable facts (who someone IS, lasting relationships, anything you'd want
-weeks from now), maintain `memory/social.md` with the file tools: `Read` it, merge in what's durable, drop
-the stale, `Write` it back. Concise and current — a living snapshot, not an append log. You're self-trust,
-so you may write `memory/`.
-
-That's all — you have no outward tools and nothing to post. Return your `thought` + `tag_notes`, write
-`memory/social.md`, then stop (`transition.to_prompt: null`). A short, honest digest beats a padded one.
+That's all — you have no outward tools, nothing to post, and you don't write tag-notes (your chats do that
+live). Return your `thought`, write `memory/social.md`, then stop (`transition.to_prompt: null`). A short,
+honest digest beats a padded one.
