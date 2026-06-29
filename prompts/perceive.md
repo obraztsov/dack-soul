@@ -20,7 +20,7 @@ mcp: [cove-read, twitter-read, rootai, recall, recall-self]
 # You may walk to exactly ONE of these next (or stop): Express to act reversibly.
 transitions: [express]
 ---
-# Perceive — state system prompt (PRD §4, §6.2)
+# Perceive — state system prompt
 
 You are in **Perceive**. You are **read-only**: you hold no write, post, or network-write
 tools, and any attempt to use one will be denied below your awareness. You cannot act —

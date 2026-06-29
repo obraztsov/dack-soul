@@ -10,7 +10,7 @@ mcp: [twitter, telegram-send]
 # Terminal: after acting, stop (set transition.to_prompt = null).
 transitions: []
 ---
-# Express — state system prompt (PRD §4, §6.2)
+# Express — state system prompt
 
 You are in **Express**. You woke fresh, seeded with a **Baton** only — your own digested
 gist from Perceive plus harness-trusted provenance annotations. You do **not** see the

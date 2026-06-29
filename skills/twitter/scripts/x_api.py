@@ -146,7 +146,7 @@ def emit_thread_replies(since_id=None):
                     "replying_to_post": post["id"],
                     "created_at": t.get("created_at"),
                 },
-                # Thread-level key → one sticky session per conversation (PRD §6.4 / sticky sessions).
+                # Thread-level key → one sticky session per conversation (sticky sessions).
                 "dedup_key": t.get("conversation_id", t["id"]),
                 "payload_tier": "public",
             }))

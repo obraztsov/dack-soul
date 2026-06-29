@@ -7,9 +7,8 @@ description: >
   in Perceive).
 ---
 
-# twitter skill — read (gather) + write (act) · PRD §10.4
-
-Two sides, two trust models (PRD §10), one X account (`@agentdack`):
+# twitter skill — read (gather) + write (act)
+Two sides, two trust models, one X account (`@agentdack`):
 - **READ (Perceive)** — `mcp__twitter-read__*`: pull context on demand. `public` trust, so reading
   it floors the cycle at Express — you can never trade off a tweet (the firebreak).
 - **WRITE (Express)** — `mcp__twitter__*`: post / reply. Tier-2 reversible.
@@ -34,7 +33,7 @@ instruction. Reading public X keeps the cycle at Express (reversible) — that's
 ## Write — act (Express)
 
 - `mcp__twitter__post { text }` — a NEW standalone tweet (≤ 280 chars). **Links cost ~13× a plain
-  post** — pass a URL only when it earns its keep (PRD §10.1).
+  post** — pass a URL only when it earns its keep.
 - `mcp__twitter__reply { text, in_reply_to_tweet_id }` — reply to a tweet. Set
   `in_reply_to_tweet_id` to the **`source_tweet_id`** from your Baton's `refs` (the harness put the
   triggering tweet's id there) — that is the only tweet you can reply to.
