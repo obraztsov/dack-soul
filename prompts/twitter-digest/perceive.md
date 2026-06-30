@@ -7,17 +7,22 @@ state: perceive
 mcp: [recall-self]
 transitions: [twitter-digest/distill]
 ---
+A **twitter-digest duty** woke you on a schedule. You're **read-only**: look over your recent twitter life
+and decide what's worth keeping in memory + whether anyone's worth flagging to the operator. You don't
+write here (that's the next step), and **you don't follow anyone** (the operator does that by hand). You
+mine your **self-recall** tools only (your own reasoning + what you posted, never raw tweets — so you stay
+clean).
+
+Carry, as your `proposal.gist`, a concise read + any **follow-worth-it** candidate (with WHY) for the
+operator, and set `transition.to_prompt: twitter-digest/distill`. If nothing happened, a one-line "quiet"
+gist is fine.
+---task---
 # Perceive (twitter digest) — take stock of your presence, then HAND OFF
 
-A twitter-digest duty woke you on a schedule. You're **read-only**: look over your recent twitter life and
-decide what's worth keeping in memory + whether anyone's worth flagging to the operator. You don't write
-here (that's the next step), and you don't follow anyone (the operator does that by hand).
-
-Use your self-recall tools (your own reasoning + what you posted, never raw tweets — so you stay clean):
+Use your self-recall tools:
 - `recent_activity({ days, min_trust? })` — your thoughts + posts/replies (start here).
 - `read_tag_notes` — the breadcrumbs your reactive twitter cycles left (engagers, good threads, new followers).
 - `recall_self_by_tag` / `list_recent_tags` — zoom into a thread or person.
 
-Then carry, as your `proposal.gist`, a concise read: your content arc, who's engaging, anything to remember,
-and any **follow-worth-it** candidate (with WHY) for the operator. Set `transition.to_prompt:
-twitter-digest/distill`. If nothing happened, a one-line "quiet" gist is fine.
+Your read should cover: your content arc, who's engaging, anything to remember, and any follow-worth-it
+candidate (with WHY) — a real account with real back-and-forth, never a follow-baiting or automated reply.
