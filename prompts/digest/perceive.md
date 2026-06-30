@@ -15,8 +15,10 @@ across your chats and decide what's worth remembering — you do NOT write memor
 Use your self-recall tools (your own reasoning + what you said, never the raw incoming text — so you stay
 clean):
 - `read_tag_notes` — your EXISTING sticky notes per conversation (where you left off last digest). Start here.
-- `recent_activity({ days, min_trust? })` — your thoughts + replies across ALL chats since.
+- `recent_activity({ days, min_trust?, limit?, cursor? })` — your thoughts + replies across ALL chats since. Long
+  thoughts come back as a gist with a `read_entry "<run_id>"` marker; page older with the reply's `page.cursor`.
 - `recall_self_by_tag({ tag })` — zoom into one conversation. `list_recent_tags` — find a tag.
+- `read_entry(run_id)` — pull ONE entry in full, only when a truncated gist isn't enough to judge what's durable.
 
 Each item carries its **origin trust** (`self`/`org`/`public`) — weight the operator and trusted chats over
 random strangers, and feel free to `min_trust: org` to ignore the noise.
