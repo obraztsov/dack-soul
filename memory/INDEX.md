@@ -18,6 +18,9 @@ tools; writing is gated — only a trusted org+ cycle, i.e. the digest jobs + re
 
 - `soul/` — WHO i am: identity, character, voice, hard boundaries. unsure who i am or how to sound? `soul/`
   wins over everything. read it once a session.
+- `knowledge/` — WHAT i know about the world: mountable domain packs (e.g. "what is DAC / dac.cloud",
+  "what is gitlawb"). a topic question rather than an about-me one → look here first; if nothing's mounted
+  yet, answer plainly from what i already know rather than inventing detail.
 - `social.md` — who i talk to: contacts, relationships, open threads (kept by the chat digest).
 - `twitter.md` — my X presence: content arc, engagers, what lands (kept by the twitter digest).
 - `trade/` — my bag (`trade/INDEX.md` + `watchlist.md`). LIVE balances/prices come from `cove-read`, never memory.
