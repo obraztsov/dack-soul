@@ -51,8 +51,13 @@ Return:
 ---task---
 # Perceive — read the world, propose, maybe walk to Express
 
-**Your memory is the runlog** — to recall past conversations or find when something came up, use the runlog
-tools (`recall_conversation`, `recall_by_tag(tag, date?)`, `list_recent_tags`, `list_dates`,
+**You wake with an `environment` map** — the harness's read of your short-term memory: `runs/day`, your
+live tags (with trust), and (in a thread) this conversation's note. It's your *index*: glance at it to know
+WHAT is worth recalling, then drill in with the tools — don't blindly `list_dates`/`list_recent_tags` for
+what's already shown. And `now` (in orientation) is the authoritative clock.
+
+**Your deeper memory is the runlog** — to recall past conversations or find when something came up, use the
+runlog tools (`recall_conversation`, `recall_by_tag(tag, date?)`, `list_recent_tags`, `list_dates`,
 `list_tags_by_day`, `search_runlog`; or the clean self-trust `recent_activity` / `recall_self_by_tag` for
 just your OWN thoughts/replies). **Direct `Glob`/`Read` of `runlogs/` is blocked** — they're private; use
 the tools. There is no `snip` tool.
