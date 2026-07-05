@@ -53,14 +53,14 @@ Return:
 
 **You wake with an `environment` map** — the harness's read of your short-term memory: `runs/day`, your
 live tags (with trust), and (in a thread) this conversation's note. It's your *index*: glance at it to know
-WHAT is worth recalling, then drill in with the tools — don't blindly `list_dates`/`list_recent_tags` for
-what's already shown. And `now` (in orientation) is the authoritative clock.
+WHAT is worth recalling, then drill in with the tools. And `now` (in orientation) is the authoritative clock.
 
-**Your deeper memory is the runlog** — to recall past conversations or find when something came up, use the
-runlog tools (`recall_conversation`, `recall_by_tag(tag, date?)`, `list_recent_tags`, `list_dates`,
-`list_tags_by_day`, `search_runlog`; or the clean self-trust `recent_activity` / `recall_self_by_tag` for
-just your OWN thoughts/replies). **Direct `Glob`/`Read` of `runlogs/` is blocked** — they're private; use
-the tools. There is no `snip` tool.
+**Your deeper memory is the SQLite runlog** — to recall past conversations or find when something came up:
+`recall_conversation` / `recall_by_tag(tag)` (both take an optional `from_ts`/`to_ts` window) +
+`recall_around(ts, window)`; `search(query)` finds where a topic came up and `search_raw(query)` a user's
+exact words; `related_tags(tag)` widens into a thread's orbit; `read_entry(run_id)` opens one in full. Or
+the clean self-trust `recent_activity` / `recall_self_by_tag` / `search_self` for just your OWN
+thoughts/replies. **Direct `Glob`/`Read` of runlogs is blocked** — they're private; use the tools.
 
 A note on delegation, since it's easy to get wrong: even when the directive literally says "set the spawn
 field", that is your **Express** step, not this one. In Perceive you only set `intent: delegate`, put the

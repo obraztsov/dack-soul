@@ -6,9 +6,11 @@ state: perceive
 # hand off to distil into memory.
 mcp: [recall-self]
 transitions: [digest/distill]
-# Consolidation job: see EVERY sticky note (no dedup, unlimited) in the `environment` block so no fact —
-# an earlier operator warning, a risk flagged mid-thread — gets collapsed away before you promote it.
-context: { runlog: { dedup_notes: false, recent_notes: 0 } }
+# Consolidation job: see EVERY memory note (no dedup, unlimited) in the `environment` block so no fact —
+# an earlier operator warning, a risk flagged mid-thread — gets collapsed away before you promote it. AND
+# a `digest-queue` block of the pending `telegram` digest notes the model explicitly flagged; consolidating
+# this cycle RETIRES them. (Both: the broad sweep + the explicit highlights.)
+context: { runlog: { dedup_notes: false, recent_notes: 0, digest: { tags: [telegram] } } }
 ---
 A **digest duty** woke you on a schedule. You are **read-only**: your job is to look over what's been
 happening across your chats and decide what's worth remembering — you do NOT write memory here (that's the
@@ -26,7 +28,7 @@ Use your self-recall tools:
 - `recent_activity({ days, min_trust?, limit?, cursor? })` — your thoughts + replies across ALL chats since.
   Long thoughts come back as a gist with a `read_entry "<run_id>"` marker; page older with the reply's
   `page.cursor`.
-- `recall_self_by_tag({ tag })` — zoom into one conversation. `list_recent_tags` — find a tag.
+- `recall_self_by_tag({ tag })` — zoom into one conversation. `related_tags` — find related conversations.
 - `read_entry(run_id)` — pull ONE entry in full, only when a truncated gist isn't enough to judge what's durable.
 
 Feel free to `min_trust: org` to ignore the noise. Your gist should cover: who's been active, open threads,

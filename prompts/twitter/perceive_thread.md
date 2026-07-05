@@ -8,7 +8,7 @@ session:
   key: [thread_id]
 # Tag runlog entries with this thread. FRESH → an `environment` map + a `thread` block (this thread's last
 # N FULL turns); RESUME → `environment-recent` (global diff) + `thread-recent` (this thread since last wake).
-context: { tag_key: true, runlog: { environment: 10, thread: 12 } }
+context: { tag_key: true, auto_tags: [twitter], runlog: { environment: 10, thread: 12 } }
 # Read-only here; hand a reply to Express (which targets the reply via the harness-provided
 # source_tweet_id), or stop.
 transitions: [express]
@@ -34,7 +34,7 @@ thread you're in, not to an isolated line.
 
 - This thread's recent turns are already in your `thread` block (your own prior thoughts + replies) — read
   them, don't re-fetch. Need OLDER context, or a fresh/evicted session? `recall_conversation` pulls this
-  thread's earlier turns; `search_runlog` / `recall_by_tag` reach the rest — never `Glob`/`Read` the
+  thread's earlier turns; `search` / `recall_by_tag` reach the rest — never `Glob`/`Read` the
   gitignored `runlogs/` files.
 - Amplify discipline: a **retweet** boosts as-is, a **quote** boosts with your own take on top. Your
   boosts are a signal — don't become a retweet bot; most threads earn a plain reply or nothing.

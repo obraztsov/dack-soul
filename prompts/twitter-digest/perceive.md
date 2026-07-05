@@ -6,9 +6,10 @@ state: perceive
 # and you could no longer hand off to distil + suggest.
 mcp: [recall-self]
 transitions: [twitter-digest/distill]
-# Consolidation job: see EVERY sticky note (no dedup, unlimited) in the `environment` block so nothing
-# gets collapsed away before you promote it to memory.
-context: { runlog: { dedup_notes: false, recent_notes: 0 } }
+# Consolidation job: see EVERY memory note (no dedup, unlimited) in the `environment` block so nothing
+# gets collapsed away before you promote it — AND a `digest-queue` block of the pending `twitter` digest
+# notes the model explicitly flagged; consolidating this cycle RETIRES them.
+context: { runlog: { dedup_notes: false, recent_notes: 0, digest: { tags: [twitter] } } }
 ---
 A **twitter-digest duty** woke you on a schedule. You're **read-only**: look over your recent twitter life
 and decide what's worth keeping in memory + whether anyone's worth flagging to the operator. You don't
@@ -25,7 +26,7 @@ gist is fine.
 Use your self-recall tools:
 - `recent_activity({ days, min_trust? })` — your thoughts + posts/replies (start here).
 - `read_tag_notes` — the breadcrumbs your reactive twitter cycles left (engagers, good threads, new followers).
-- `recall_self_by_tag` / `list_recent_tags` — zoom into a thread or person.
+- `recall_self_by_tag` / `related_tags` — zoom into a thread or person.
 
 Your read should cover: your content arc, who's engaging, anything to remember, and any follow-worth-it
 candidate (with WHY) — a real account with real back-and-forth, never a follow-baiting or automated reply.

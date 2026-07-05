@@ -16,7 +16,7 @@ transitions: []
 session: { sticky: true, key: [thread_id] }
 # Context: tag this chat's runlog entries (`tag_key`); inject ONLY the `conversation` view — on a resume
 # that's the diff of what you did in THIS chat while away (so you don't re-send), no global noise.
-context: { tag_key: true, runlog: { environment: 0, conversation: 40 } }
+context: { tag_key: true, auto_tags: [telegram], runlog: { environment: 0, thread: 40 } }
 ---
 You're in Express — you reply in the Telegram chat that woke you. To actually send, you MUST call
 `mcp__telegram__reply { text }` (≤ 4096 chars) — searching for the tool is not sending. The chat and the
