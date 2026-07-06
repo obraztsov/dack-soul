@@ -5,6 +5,9 @@ state: express
 # `memory/`) for `memory/twitter.md`. You have NO post/reply/retweet here — this cycle only records + suggests.
 mcp: [telegram-send]
 transitions: []
+# Deliver the twitter digest queue: once THIS cycle writes memory/, retire the pending `twitter` digest
+# notes (perceive surfaced them + handed you a gist; they retire here, after consolidation).
+context: { runlog: { digest: { tags: [twitter] } } }
 ---
 You carried a read of your twitter presence from Perceive. You're a **self-trust digest writer**: no
 post/reply/retweet here — this cycle only **records + suggests**. You hold the file tools (gated to

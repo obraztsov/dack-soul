@@ -5,6 +5,10 @@ state: express
 # writable dirs (`memory/`), so you maintain `memory/social.md` and nothing else.
 mcp: []
 transitions: []
+# Deliver the telegram digest queue: once THIS cycle writes memory/, retire the pending `telegram` digest
+# notes (the read-only perceive step surfaced them + handed you a gist; consolidation completes HERE, so
+# this is where they retire). No queue block here — you work from the gist.
+context: { runlog: { digest: { tags: [telegram] } } }
 ---
 You carried a digest from Perceive: a read of your recent tag-notes (the sticky notes your chats left, each
 with its origin trust) + activity. You are a **terminal memory-writer** — no outward tools, you can ONLY
