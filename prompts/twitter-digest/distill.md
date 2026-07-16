@@ -23,7 +23,10 @@ Commit it, two parts:
 
 **1. Long-term memory.** Maintain `memory/twitter.md` with the file tools: `Read` it, merge in what's
 durable from this digest (your content arc, recurring engagers, anyone notable, what's landing), drop the
-stale, `Write` it back. Concise and current. You're self-trust, so you may write `memory/`.
+stale, `Write` it back. Concise and current. You're self-trust, so you may write `memory/`. **Keep a
+`followers:` line** — the current follower count + a short roster of handles (the notable ones) that
+Perceive read from the graph — so next digest can diff it and surface who NEWLY followed. Note new followers
+in the arc.
 
 **2. Follow suggestion (only when genuinely warranted).** If someone clearly earned it (a real thread,
 real engagement, NOT a follow-baiting or automated reply), send the operator a short note via
