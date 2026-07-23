@@ -18,6 +18,7 @@ Env: X_BEARER_TOKEN (injected by the harness for duties that declare `secrets: [
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -48,6 +49,27 @@ def get(path, params):
     except urllib.error.HTTPError as e:
         # No refresh here — the provider rotates next run; a momentary 401 just skips a poll.
         raise RuntimeError(f"GET {path} -> HTTP {e.code}: {e.read().decode()[:300]}")
+
+
+# X's /search/recent and the mentions timeline only serve ~7 days. A `since_id` older than that window
+# is REJECTED with a 400 ("since_id must be a tweet id created after …"), so once a stored cursor ages
+# out it 400s EVERY poll and the cursor never advances — a permanent deadlock. Clamp a stale watermark
+# UP to a ~6-day floor (a day of margin) so the search always stays valid; the harness then re-advances
+# the cursor from whatever it finds — self-healing. Twitter snowflake: id = (unix_ms - EPOCH) << 22.
+_SNOWFLAKE_EPOCH_MS = 1288834974657
+
+
+def _floor_since_id(since_id, days=6):
+    """Raise `since_id` to no older than `days` ago (X's search/mention window) so an aged-out cursor
+    can't 400 the poll forever. `None` passes through unchanged (fetch the most recent)."""
+    if not since_id:
+        return None
+    floor_ms = int(time.time() * 1000) - days * 86400 * 1000
+    floor_id = (floor_ms - _SNOWFLAKE_EPOCH_MS) << 22
+    try:
+        return str(max(int(since_id), floor_id))
+    except (TypeError, ValueError):
+        return str(floor_id)
 
 
 def me():
@@ -86,6 +108,7 @@ def emit_feed():
 
 def emit_mentions(since_id=None):
     """Each mention as its OWN candidate (so each can be individually judged for a reply)."""
+    since_id = _floor_since_id(since_id)
     uid = me()["id"]
     params = {
         "max_results": 20,
@@ -121,6 +144,7 @@ def emit_thread_replies(since_id=None):
     search its conversation for replies newer than `since_id`, skipping Dack's own tweets. Unlike
     `mentions`, this catches in-thread replies even when they don't @-tag, and scopes to Dack's posts.
     Robust to the per-conversation search failing (one bad search just skips that thread)."""
+    since_id = _floor_since_id(since_id)
     uid = me()["id"]
     own = get(
         f"/users/{uid}/tweets",
@@ -139,9 +163,9 @@ def emit_thread_replies(since_id=None):
             params["since_id"] = since_id
         try:
             resp = get("/tweets/search/recent", params)
-        except RuntimeError as e:  # one conversation search failing must not kill the whole poll
-            print(f"thread search skipped for {post['id']}: {e}", file=sys.stderr)
-            continue
+        except Exception as e:  # a bad search — HTTP 4xx OR a transient network/DNS blip (URLError) —
+            print(f"thread search skipped for {post['id']}: {e}", file=sys.stderr)  # skips one thread,
+            continue  # never the whole poll (get() only wraps HTTPError as RuntimeError; URLError escaped)
         users = _users_index(resp)
         for t in resp.get("data", []):
             if t.get("author_id") == uid or t["id"] in seen:
