@@ -106,10 +106,25 @@ def emit_feed():
     print(json.dumps({"type": "feed_digest", "payload": {"count": len(posts), "posts": posts}, "payload_tier": "public"}))
 
 
+def own_thread_ids(uid, n=10):
+    """The duck's own recent ORIGINAL posts — the conversation roots it monitors for in-thread replies.
+    Shared so the two duties PARTITION cleanly with no overlap: `emit_thread_replies` SEARCHES these
+    threads, and `emit_mentions` EXCLUDES them. A reply inside the duck's own thread must fire the
+    thread-replies duty only — NOT also the mentions duty — else the duck replies twice to one tweet
+    (both duties see the same reply, since a reply auto-@-mentions its parent's author). No gap either:
+    a thread that ages out of this window stops being searched here and is picked up by mentions."""
+    return [p["id"] for p in get(
+        f"/users/{uid}/tweets",
+        {"max_results": n, "exclude": "replies,retweets", "tweet.fields": "created_at"},
+    ).get("data", [])]
+
+
 def emit_mentions(since_id=None):
-    """Each mention as its OWN candidate (so each can be individually judged for a reply)."""
+    """Mentions that are NOT replies inside the duck's own threads (those are twitter-thread-replies'
+    job) — each its OWN candidate, so each can be individually judged for a reply."""
     since_id = _floor_since_id(since_id)
     uid = me()["id"]
+    own = set(own_thread_ids(uid))  # conversations owned by twitter-thread-replies → skip them here
     params = {
         "max_results": 20,
         "tweet.fields": "created_at,author_id,conversation_id",
@@ -121,6 +136,8 @@ def emit_mentions(since_id=None):
     resp = get(f"/users/{uid}/mentions", params)
     users = _users_index(resp)
     for t in resp.get("data", []):
+        if t.get("conversation_id") in own:
+            continue  # a reply within the duck's OWN thread → twitter-thread-replies handles it (no double)
         a = users.get(t.get("author_id", ""), {})
         print(json.dumps({
             "type": "mention",
@@ -146,14 +163,10 @@ def emit_thread_replies(since_id=None):
     Robust to the per-conversation search failing (one bad search just skips that thread)."""
     since_id = _floor_since_id(since_id)
     uid = me()["id"]
-    own = get(
-        f"/users/{uid}/tweets",
-        {"max_results": 10, "exclude": "replies,retweets", "tweet.fields": "created_at"},
-    ).get("data", [])
     seen = set()
-    for post in own:
+    for pid in own_thread_ids(uid):
         params = {
-            "query": f"conversation_id:{post['id']}",
+            "query": f"conversation_id:{pid}",
             "max_results": 20,
             "tweet.fields": "created_at,author_id,conversation_id",
             "expansions": "author_id",
@@ -164,7 +177,7 @@ def emit_thread_replies(since_id=None):
         try:
             resp = get("/tweets/search/recent", params)
         except Exception as e:  # a bad search — HTTP 4xx OR a transient network/DNS blip (URLError) —
-            print(f"thread search skipped for {post['id']}: {e}", file=sys.stderr)  # skips one thread,
+            print(f"thread search skipped for {pid}: {e}", file=sys.stderr)  # skips one thread,
             continue  # never the whole poll (get() only wraps HTTPError as RuntimeError; URLError escaped)
         users = _users_index(resp)
         for t in resp.get("data", []):
@@ -180,7 +193,7 @@ def emit_thread_replies(since_id=None):
                     "author_username": a.get("username"),
                     "author_id": t.get("author_id"),
                     "conversation_id": t.get("conversation_id"),
-                    "replying_to_post": post["id"],
+                    "replying_to_post": pid,
                     "sent_at": _fmt_time(t.get("created_at")),
                 },
                 # Thread-level key → one sticky session per conversation (sticky sessions).
