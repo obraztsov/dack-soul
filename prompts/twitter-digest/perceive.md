@@ -10,7 +10,7 @@ transitions: [twitter-digest/distill]
 # Consolidation job: see EVERY memory note (no dedup, unlimited) in the `environment` block so nothing
 # gets collapsed away before you promote it — AND a `digest-queue` block of the pending `twitter` digest
 # notes the model explicitly flagged; consolidating this cycle RETIRES them.
-context: { runlog: { dedup_notes: false, recent_notes: 0, digest: { tags: [twitter] } } }
+context: { runlog: { dedup_notes: false, recent_notes: 0, recent_notes_days: 14, digest: { tags: [twitter] } } }
 ---
 A **twitter-digest duty** woke you on a schedule. You're **read-only**: look over your recent twitter life
 and decide what's worth keeping in memory + whether anyone's worth flagging to the operator. You don't

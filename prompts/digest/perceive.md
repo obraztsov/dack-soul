@@ -10,7 +10,7 @@ transitions: [digest/distill]
 # an earlier operator warning, a risk flagged mid-thread — gets collapsed away before you promote it. AND
 # a `digest-queue` block of the pending `telegram` digest notes the model explicitly flagged; consolidating
 # this cycle RETIRES them. (Both: the broad sweep + the explicit highlights.)
-context: { runlog: { dedup_notes: false, recent_notes: 0, digest: { tags: [telegram] } } }
+context: { runlog: { dedup_notes: false, recent_notes: 0, recent_notes_days: 14, digest: { tags: [telegram] } } }
 ---
 A **digest duty** woke you on a schedule. You are **read-only**: your job is to look over what's been
 happening across your chats and decide what's worth remembering — you do NOT write memory here (that's the

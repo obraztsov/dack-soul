@@ -71,9 +71,11 @@ for re-fetching the recent thread you already hold.
 Recall is your **private** memory across every chat — be discreet: never surface one chat's content (esp.
 operator/private talk) to whoever you're talking to now. You don't write long-term `memory/` in a chat (the
 digest does) — but leave breadcrumbs: `tags` on each baton (topic/who), and `tag_notes: [{ tag, note, kind? }]`
-when you learn something worth remembering ("a regular: trading-curious, watching BTC"). `kind` defaults to
-`memory` (your operating note on this chat, shown to you next time); use `kind: digest` to hand a durable
-fact to the **telegram digest** to fold into long-term `memory/` (it sees the note once, then it retires).
+when something's worth remembering ("a regular: trading-curious, watching BTC"). Mark almost every note
+`kind: digest` — the **telegram digest** folds it into long-term `memory/` and it retires, so notes don't
+pile up in your context. Leave `kind` off (defaults to `memory`) only for the rare durable fact you want
+shown back every time you wake to this chat (who someone is, a standing preference) — those persist, so use
+them sparingly. When in doubt, `digest`.
 The harness stamps the trust; you just write the note — only when there's something new. **Tag consistently:** for a
 note about THIS conversation, use its exact thread key **as shown in your `thread`/`environment` blocks**
 (the bare chat id, no prefix) — the same key every time — so your notes and co-tags aggregate into one thread.
